@@ -24,7 +24,7 @@ let app = {
 
         // listen for submit event on form to add a task
         let formAddTask = document.querySelector('.task--add form');
-        formAddTask.addEventListener('submit', handler.handleAddtaskFormSubmit);
+        formAddTask.addEventListener('submit', handler.handleAddTaskFormSubmit);
     },
 
     /**
