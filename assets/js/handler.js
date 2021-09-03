@@ -63,6 +63,12 @@ let handler = {
         progressBar.style.width = '100%';
     },
 
+    /*
+    Objectif : charger les tâches depuis l'API
+    - mutualiser le code d'ajout d'une tâche avec le formulaire
+    - faire appel à l'API et traiter la réponse
+    /**
+
     /**
      * Handle submit event on the form to add a task
      * @param {*} event 
@@ -74,34 +80,7 @@ let handler = {
         let name = event.currentTarget.querySelector('input.task__name-edit').value;
         let category = event.currentTarget.querySelector('.task__category select').value;
 
-        // get the template for a task
-        let template = document.getElementById('template-task');
-
-        // clone the content of the template
-        let newTask = template.content.cloneNode(true);
-
-        // ----- modify the clone with information from the form
-        let taskElement = newTask.querySelector('.task');
-
-        // data-category
-        taskElement.dataset.category = category;
-
-        // name of the task
-        taskElement.querySelector('.task__name-display').textContent = name;
-
-        // value of the input
-        taskElement.querySelector('.task__name-edit').value = name;
-
-        // display the category
-        taskElement.querySelector('.task__category p').textContent = category;
-
-        // ----- add the clone to the DOM, before the form
-        let parentNode = document.querySelector('.tasks');
-        let brother = parentNode.querySelector('.task--add');
-        parentNode.insertBefore(newTask, brother);
-
-        // bind events for the new task
-        app.bindEventsForTask(taskElement);
+        taskManager.addTask(name, category);
 
         // clear the form
         event.currentTarget.querySelector('input.task__name-edit').value = '';
