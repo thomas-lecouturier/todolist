@@ -7,6 +7,9 @@ let app = {
 
         // mise en place des écouteurs d'événements
         app.bindEvents();
+
+        // chargement des catégories
+        categoryManager.loadCategories();
     },
 
     /**
