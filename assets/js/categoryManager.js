@@ -6,7 +6,7 @@ let categoryManager = {
      * Load all categories from the API
      */
     loadCategories: function() {
-        console.log('loadCategories');
+        // console.log('loadCategories');
 
         // On prépare la configuration de la requête HTTP
         let config = {
@@ -28,8 +28,32 @@ let categoryManager = {
                 // On dispose désormais d'un tableau JS exploitable dans la variable data
                 // console.log(data); // contenu de la réponse sous forme d' objet JS
 
-                // TODO créer les options dans le DOM
+                let headerSelect = document.getElementById('header-select-category')
+                categoryManager.addOptionsToSelect(data, headerSelect );
+
+                let formAddSelect = document.getElementById('form-add-select-category');
+                categoryManager.addOptionsToSelect(data, formAddSelect);
             }
         );
+    },
+
+    /**
+     * Add options to a select item
+     * @param categoriesArray Categories to add as options
+     * @param selectElement select element into which add the options
+     */
+    addOptionsToSelect: function(categoriesArray, selectElement) {
+        // boucler sur le tableau
+        for (const currentCategory of categoriesArray) {
+            // console.log(currentCategory);
+
+            //create an option
+            let optionElement = document.createElement('option')
+            optionElement.textContent = currentCategory.name;
+            optionElement.value = currentCategory.id;
+
+            // add option to the select
+            selectElement.appendChild(optionElement);
+        }
     }
 }
